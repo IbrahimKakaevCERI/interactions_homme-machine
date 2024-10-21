@@ -1,0 +1,9 @@
+# Ignorer les fichiers de configuration
+*.env
+
+# Ignorer les fichiers temporaires
+*.tmp
+
+# Ignorer le dossier de l'environnement virtuel
+venv/
+
