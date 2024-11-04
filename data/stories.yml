@@ -28,3 +28,48 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_goodbye
+
+# Utillise utter_ask_visiting_hours, utter_smalltalk_joke
+
+- story: smalltalk
+  steps:
+  - action: utter_ask_visiting_hours
+  - action: utter_smalltalk_joke
+  - action: utter_ask_location
+  - action: utter_ask_hygiene_rules
+  - action: utter_smalltalk_social
+  - action: utter_ask_appointment
+  
+  
+
+
+# Scénario pour donner des directions dans l'hôpital
+- story: give directions
+  steps:
+  - intent: ask_direction
+  - action: action_give_directions
+
+# Scénario pour rappeler un rendez-vous
+- story: check appointment
+  steps:
+  - intent: ask_appointment
+  - action: action_check_appointment
+
+# Scénario pour obtenir les horaires de visite
+- story: visiting hours
+  steps:
+  - intent: ask_visiting_hours
+  - action: action_provide_visiting_hours
+
+# Scénario pour connaître les consignes d'hygiène
+- story: hygiene rules
+  steps:
+  - intent: ask_hygiene_rules
+  - action: action_provide_hygiene_rules
+
+# Scénario pour écouter une blague du robot
+- story: tell a joke
+  steps:
+  - intent: ask_joke
+  - action: action_tell_joke
+

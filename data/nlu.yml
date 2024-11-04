@@ -16,6 +16,8 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+    - bonjour
+    - salut
 
 - intent: goodbye
   examples: |
@@ -29,6 +31,8 @@ nlu:
     - see you around
     - bye bye
     - see you later
+    - au revoir
+    - à bientôt
 
 - intent: affirm
   examples: |
@@ -38,6 +42,10 @@ nlu:
     - of course
     - that sounds good
     - correct
+    - oui
+    - bien sûr
+    - c'est ça
+    - tout à fait
 
 - intent: deny
   examples: |
@@ -48,6 +56,9 @@ nlu:
     - don't like that
     - no way
     - not really
+    - non
+    - pas vraiment
+    - je ne pense pas
 
 - intent: mood_great
   examples: |
@@ -65,6 +76,10 @@ nlu:
     - so so perfect
     - so good
     - so perfect
+    - je vais très bien
+    - je me sens super bien
+    - je suis heureux
+    - c'est génial
 
 - intent: mood_unhappy
   examples: |
@@ -79,9 +94,13 @@ nlu:
     - unhappy
     - not good
     - not very good
-    - extremly sad
+    - extremely sad
     - so saad
     - so sad
+    - je suis triste
+    - je me sens mal
+    - je suis déçu
+    - je ne vais pas bien
 
 - intent: bot_challenge
   examples: |
@@ -89,3 +108,54 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+    - es-tu un robot ?
+    - parles-tu à un humain ?
+    - es-tu un humain ?
+    - suis-je en train de parler à un robot ?
+
+# Intentions spécifiques à l'environnement hospitalier
+
+- intent: ask_direction
+  examples: |
+    - Où se trouve le service de radiologie ?
+    - Où est l'ascenseur ?
+    - Comment aller à la salle d'attente ?
+    - Où est l'accueil principal ?
+    - Peux-tu m'aider à trouver la pédiatrie ?
+    - Où est le laboratoire ?
+    - Comment trouver le service des urgences ?
+
+
+- intent: ask_appointment
+  examples: |
+    - J'ai un rendez-vous aujourd'hui ?
+    - Quand est mon prochain rendez-vous ?
+    - Peux-tu vérifier si j'ai un rendez-vous ?
+    - Quel est le prochain rendez-vous ?
+    - Vérifie mes rendez-vous à l'hôpital
+    - Je voudrais connaître la date de mon rendez-vous
+
+- intent: ask_visiting_hours
+  examples: |
+    - Quels sont les horaires de visite ?
+    - A quelle heure sont les visites ?
+    - Peux-tu me dire les heures de visite ?
+    - Quand puis-je rendre visite à un patient ?
+    - Quelles sont les heures de visite aujourd'hui ?
+
+- intent: ask_hygiene_rules
+  examples: |
+    - Quelles sont les règles d'hygiène ici ?
+    - Dois-je porter un masque ?
+    - Quelles sont les consignes sanitaires ?
+    - Quelles sont les règles COVID dans cet hôpital ?
+    - Faut-il se désinfecter les mains à l'entrée ?
+
+- intent: ask_joke
+  examples: |
+    - Dis-moi une blague
+    - Peux-tu me raconter une blague ?
+    - Fais-moi rire
+    - Dis quelque chose de drôle
+    - J'aimerais entendre une blague
+    - Raconte une blague pour me faire sourire

@@ -7,3 +7,5 @@
 # Ignorer le dossier de l'environnement virtuel
 venv/
 
+# 
+.rasa/cache/cache.db
