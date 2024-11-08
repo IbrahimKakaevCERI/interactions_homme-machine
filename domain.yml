@@ -1,32 +1,31 @@
 version: "3.1"
 
 intents:
-  - salutation
-  - au_revoir
-  - confirmer
-  - nier
-  - humeur_bonne
-  - humeur_mauvaise
-  - demander_direction
-  - demander_blague
-  - demander_rendez_vous
-  - demander_heures_visite
-  - demander_regles_hygiene
-  - defi_bot
-  
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - ask_direction
+  - ask_joke
+  - ask_appointment
+  - ask_visiting_hours
+  - ask_hygiene_rules
 
 entities:
-  - location  # Lieu spécifique dans l'hôpital (salle, service, etc.)
-  - appointment_date  # Date du rendez-vous
-  - person_name  # Nom de la personne à visiter
+- location  # Lieu spécifique dans l'hôpital (salle, service, etc.)
+- appointment_date  # Date du rendez-vous
+- person_name  # Nom de la personne à visiter
 
 actions:
-  - action_donner_directions
-  - action_verifier_rendez_vous
-  - action_fournir_heures_visite
-  - action_fournir_regles_hygiene
-  - action_raconter_blague
-
+  - action_hello_world
+  - action_give_directions     # Ajoute cette action
+  - action_check_appointment    # Ajoute cette action
+  - action_provide_visiting_hours # Ajoute cette action
+  - action_provide_hygiene_rules  # Ajoute cette action
+  - action_tell_joke             # Ajoute cette action
 slots:
   location:
     type: text
@@ -42,7 +41,7 @@ slots:
       - type: from_text  # Extract person's name from user input
 
 responses:
-  utter_salutation:
+  utter_greet:
     - text: "Bonjour! Je suis Pepper, comment puis-je vous aider aujourd'hui?"
 
   utter_goodbye:

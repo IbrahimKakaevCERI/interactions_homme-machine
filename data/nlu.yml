@@ -1,7 +1,7 @@
 version: "3.1"
 
 nlu:
-- intent: salutation
+- intent: greet
   examples: |
     - salut
     - bonjour
@@ -17,7 +17,7 @@ nlu:
     - bonjour
     - salut
 
-- intent: au_revoir
+- intent: goodbye
   examples: |
     - à plus
     - au revoir
@@ -30,7 +30,7 @@ nlu:
     - bye bye
     - à bientôt
 
-- intent: confirmer
+- intent: affirm
   examples: |
     - oui
     - ouais
@@ -43,7 +43,7 @@ nlu:
     - c'est ça
     - absolument
 
-- intent: nier
+- intent: deny
   examples: |
     - non
     - non merci
@@ -56,7 +56,7 @@ nlu:
     - pas vraiment
     - je ne crois pas
 
-- intent: humeur_bonne
+- intent: mood_great
   examples: |
     - parfait
     - super
@@ -76,7 +76,7 @@ nlu:
     - je suis heureux
     - c'est génial
 
-- intent: humeur_mauvaise
+- intent: mood_unhappy
   examples: |
     - ma journée a été horrible
     - je suis triste
@@ -94,7 +94,7 @@ nlu:
     - je suis déçu
     - je ne vais pas bien
 
-- intent: defi_bot
+- intent: bot_challenge
   examples: |
     - es-tu un robot ?
     - es-tu un humain ?
@@ -107,7 +107,7 @@ nlu:
 
 # Intentions spécifiques à l'environnement hospitalier
 
-- intent: demander_direction
+- intent: ask_direction
   examples: |
     - Où se trouve le service de radiologie ?
     - Où est l'ascenseur ?
@@ -117,7 +117,7 @@ nlu:
     - Où est le laboratoire ?
     - Comment trouver le service des urgences ?
 
-- intent: demander_rendez_vous
+- intent: ask_appointment
   examples: |
     - Ai-je un rendez-vous aujourd'hui ?
     - Quand est mon prochain rendez-vous ?
@@ -126,7 +126,7 @@ nlu:
     - Vérifie mes rendez-vous à l'hôpital
     - Je voudrais connaître la date de mon rendez-vous
 
-- intent: demander_heures_visite
+- intent: ask_visiting_hours
   examples: |
     - Quels sont les horaires de visite ?
     - A quelle heure sont les visites ?
@@ -134,7 +134,7 @@ nlu:
     - Quand puis-je rendre visite à un patient ?
     - Quelles sont les heures de visite aujourd'hui ?
 
-- intent: demander_regles_hygiene
+- intent: ask_visiting_hours
   examples: |
     - Quelles sont les règles d'hygiène ici ?
     - Dois-je porter un masque ?
@@ -142,7 +142,7 @@ nlu:
     - Quelles sont les règles COVID dans cet hôpital ?
     - Faut-il se désinfecter les mains à l'entrée ?
 
-- intent: demander_blague
+- intent: ask_joke
   examples: |
     - Dis-moi une blague
     - Peux-tu me raconter une blague ?

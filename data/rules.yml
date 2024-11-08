@@ -4,11 +4,11 @@ rules:
 
 - rule: Dire au revoir chaque fois que l'utilisateur dit au revoir
   steps:
-  - intent: au_revoir
-  - action: utter_au_revoir
+  - intent: goodbye
+  - action: utter_goodbye
 
 - rule: Dire 'Je suis un bot' chaque fois que l'utilisateur remet en question
   steps:
-  - intent: defi_bot
-  - action: utter_je_suis_un_bot
+  - intent: bot_challenge
+  - action: utter_iamabot
 

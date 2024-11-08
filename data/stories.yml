@@ -2,71 +2,72 @@ version: "3.1"
 
 stories:
 
-- story: chemin heureux
+- story: happy path
   steps:
-  - intent: salutation
-  - action: utter_salutation
-  - intent: humeur_bonne
-  - action: utter_heureux
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
 
-- story: chemin triste 1
+- story: sad path 1
   steps:
-  - intent: salutation
-  - action: utter_salutation
-  - intent: humeur_mauvaise
-  - action: utter_remonter_moral
-  - action: utter_cela_aide
-  - intent: confirmer
-  - action: utter_heureux
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
 
-- story: chemin triste 2
+- story: sad path 2
   steps:
-  - intent: salutation
-  - action: utter_salutation
-  - intent: humeur_mauvaise
-  - action: utter_remonter_moral
-  - action: utter_cela_aide
-  - intent: nier
-  - action: utter_au_revoir
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
 
-# Utiliser utter_ask_heures_visite, utter_petite_conversation_blague
+# Utillise utter_ask_visiting_hours, utter_smalltalk_joke
 
-- story: petite_conversation
+- story: smalltalk
   steps:
-  - action: utter_ask_heures_visite
-  - action: utter_petite_conversation_blague
-  - action: utter_ask_emplacement
-  - action: utter_ask_regles_hygiene
-  - action: utter_petite_conversation_sociale
-  - action: utter_ask_rendez_vous
+  - action: utter_ask_visiting_hours
+  - action: utter_smalltalk_joke
+  - action: utter_ask_location
+  - action: utter_ask_hygiene_rules
+  - action: utter_smalltalk_social
+  - action: utter_ask_appointment
+
   
 
 # Scénario pour donner des directions dans l'hôpital
-- story: donner des directions
+- story: give directions
   steps:
-  - intent: demander_direction
-  - action: action_donner_directions
+  - intent: ask_direction
+  - action: action_give_directions
 
 # Scénario pour rappeler un rendez-vous
-- story: vérifier rendez-vous
+- story: check appointment
   steps:
-  - intent: demander_rendez_vous
-  - action: action_verifier_rendez_vous
+  - intent: ask_appointment
+  - action: action_check_appointment
 
 # Scénario pour obtenir les horaires de visite
-- story: heures de visite
+- story: visiting hours
   steps:
-  - intent: demander_heures_visite
-  - action: action_fournir_heures_visite
+  - intent: ask_visiting_hours
+  - action: action_provide_visiting_hours
 
 # Scénario pour connaître les consignes d'hygiène
-- story: règles d'hygiène
+- story: hygiene rules
   steps:
-  - intent: demander_regles_hygiene
-  - action: action_fournir_regles_hygiene
+  - intent: ask_hygiene_rules
+  - action: action_provide_hygiene_rules
 
 # Scénario pour écouter une blague du robot
-- story: raconter une blague
+- story: tell a joke
   steps:
-  - intent: demander_blague
-  - action: action_raconter_blague
+  - intent: ask_joke
+  - action: action_tell_joke
