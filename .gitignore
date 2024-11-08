@@ -8,4 +8,8 @@
 venv/
 
 # 
-.rasa/cache/cache.db
+.rasa/cache
+
+models/
+
+actions/__pycache__/
