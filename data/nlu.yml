@@ -1,113 +1,105 @@
 version: "3.1"
 
 nlu:
-- intent: greet
+- intent: salutation
   examples: |
+    - salut
+    - bonjour
+    - coucou
+    - bonjour à toi
+    - bonne matinée
+    - bonsoir
     - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+    - salut toi
+    - allons-y
+    - salut mec
+    - bonne après-midi
     - bonjour
     - salut
 
-- intent: goodbye
+- intent: au_revoir
   examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+    - à plus
     - au revoir
+    - à plus tard
+    - bonne nuit
+    - à la prochaine
+    - au revoir
+    - passe une bonne journée
+    - on se revoit bientôt
+    - bye bye
     - à bientôt
 
-- intent: affirm
+- intent: confirmer
   examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
     - oui
+    - ouais
     - bien sûr
-    - c'est ça
     - tout à fait
+    - effectivement
+    - évidemment
+    - oui, c'est exact
+    - bien entendu
+    - c'est ça
+    - absolument
 
-- intent: deny
+- intent: nier
   examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+    - non
+    - non merci
+    - jamais
+    - je ne pense pas
+    - ça ne me plaît pas
+    - pas question
+    - pas vraiment
     - non
     - pas vraiment
-    - je ne pense pas
+    - je ne crois pas
 
-- intent: mood_great
+- intent: humeur_bonne
   examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+    - parfait
+    - super
+    - incroyable
+    - je me sens comme un roi
+    - merveilleux
+    - je me sens très bien
+    - je vais super bien
+    - je suis au top
+    - je suis prêt à conquérir le monde
+    - super motivé
+    - extrêmement bien
+    - absolument parfait
+    - vraiment bien
     - je vais très bien
     - je me sens super bien
     - je suis heureux
     - c'est génial
 
-- intent: mood_unhappy
+- intent: humeur_mauvaise
   examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremely sad
-    - so saad
-    - so sad
+    - ma journée a été horrible
     - je suis triste
+    - je ne me sens pas très bien
+    - je suis déçu
+    - super triste
+    - je suis très triste
+    - je suis triste
+    - vraiment triste
+    - pas bien
+    - pas très bien
+    - extrêmement triste
+    - vraiment très triste
     - je me sens mal
     - je suis déçu
     - je ne vais pas bien
 
-- intent: bot_challenge
+- intent: defi_bot
   examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+    - es-tu un robot ?
+    - es-tu un humain ?
+    - est-ce que je parle à un bot ?
+    - est-ce que je parle à un humain ?
     - es-tu un robot ?
     - parles-tu à un humain ?
     - es-tu un humain ?
@@ -115,7 +107,7 @@ nlu:
 
 # Intentions spécifiques à l'environnement hospitalier
 
-- intent: ask_direction
+- intent: demander_direction
   examples: |
     - Où se trouve le service de radiologie ?
     - Où est l'ascenseur ?
@@ -125,17 +117,16 @@ nlu:
     - Où est le laboratoire ?
     - Comment trouver le service des urgences ?
 
-
-- intent: ask_appointment
+- intent: demander_rendez_vous
   examples: |
-    - J'ai un rendez-vous aujourd'hui ?
+    - Ai-je un rendez-vous aujourd'hui ?
     - Quand est mon prochain rendez-vous ?
     - Peux-tu vérifier si j'ai un rendez-vous ?
     - Quel est le prochain rendez-vous ?
     - Vérifie mes rendez-vous à l'hôpital
     - Je voudrais connaître la date de mon rendez-vous
 
-- intent: ask_visiting_hours
+- intent: demander_heures_visite
   examples: |
     - Quels sont les horaires de visite ?
     - A quelle heure sont les visites ?
@@ -143,7 +134,7 @@ nlu:
     - Quand puis-je rendre visite à un patient ?
     - Quelles sont les heures de visite aujourd'hui ?
 
-- intent: ask_hygiene_rules
+- intent: demander_regles_hygiene
   examples: |
     - Quelles sont les règles d'hygiène ici ?
     - Dois-je porter un masque ?
@@ -151,7 +142,7 @@ nlu:
     - Quelles sont les règles COVID dans cet hôpital ?
     - Faut-il se désinfecter les mains à l'entrée ?
 
-- intent: ask_joke
+- intent: demander_blague
   examples: |
     - Dis-moi une blague
     - Peux-tu me raconter une blague ?
