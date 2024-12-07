@@ -13,32 +13,54 @@ intents:
   - ask_appointment
   - ask_visiting_hours
   - ask_hygiene_rules
+  - user_employee  # Intention pour un employé
+  - user_patient  # Intention pour un patient
+  - user_visitor  # Intention pour un visiteur
 
 entities:
-- location  # Lieu spécifique dans l'hôpital (salle, service, etc.)
-- appointment_date  # Date du rendez-vous
-- person_name  # Nom de la personne à visiter
+  - location
+  - appointment_date
+  - person_name
+  - user_type  # Entité pour capturer le type d'utilisateur
 
 actions:
   - action_hello_world
-  - action_give_directions     # Ajoute cette action
-  - action_check_appointment    # Ajoute cette action
-  - action_provide_visiting_hours # Ajoute cette action
-  - action_provide_hygiene_rules  # Ajoute cette action
-  - action_tell_joke             # Ajoute cette action
+  - action_give_directions
+  - action_check_appointment
+  - action_provide_visiting_hours
+  - action_provide_hygiene_rules
+  - action_tell_joke
+  - action_check_rendezvous
+
 slots:
   location:
     type: text
     mappings:
-      - type: from_text  # Extract location from user input
+      - type: from_text
   appointment_date:
     type: text
     mappings:
-      - type: from_text  # Extract appointment date from user input
+      - type: from_text
   person_name:
     type: text
     mappings:
-      - type: from_text  # Extract person's name from user input
+      - type: from_text
+  user_type:
+    type: categorical
+    values:
+      - employee
+      - patient
+      - visitor
+    mappings:
+      - type: from_intent  # Utilisez cette ligne pour mapper l'intention à ce slot
+        intent: user_employee
+        value: employee
+      - type: from_intent
+        intent: user_patient
+        value: patient
+      - type: from_intent
+        intent: user_visitor
+        value: visitor
 
 responses:
   utter_greet:
@@ -77,6 +99,15 @@ responses:
 
   utter_iamabot:
     - text: "Je suis un robot, alimenté par Rasa pour vous aider."
+
+  utter_employee_welcome:
+    - text: "Bienvenue, cher employé ! Comment puis-je vous assister aujourd'hui ?"
+
+  utter_patient_welcome:
+    - text: "Bonjour, cher patient ! Comment puis-je vous aider aujourd'hui ?"
+
+  utter_visitor_welcome:
+    - text: "Bonjour, cher visiteur ! Comment puis-je vous aider aujourd'hui ?"
 
 session_config:
   session_expiration_time: 60  # Session expiration time in minutes

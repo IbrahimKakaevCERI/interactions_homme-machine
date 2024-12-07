@@ -40,8 +40,6 @@ stories:
   - action: utter_smalltalk_social
   - action: utter_ask_appointment
 
-  
-
 # Scénario pour donner des directions dans l'hôpital
 - story: give directions
   steps:
@@ -71,3 +69,23 @@ stories:
   steps:
   - intent: ask_joke
   - action: action_tell_joke
+
+- story: Identifying a visitor
+  steps:
+  - intent: user_visitor
+  - action: utter_visitor_welcome
+
+- story: Identifying a patient
+  steps:
+  - intent: user_patient
+  - action: utter_patient_welcome
+  
+- story: Identifying an employee
+  steps:
+  - intent: user_employee
+  - action: utter_employee_welcome
+
+- story: Demander un rendez-vous
+  steps:
+    - intent: demander_rendezvous
+    - action: action_check_rendezvous

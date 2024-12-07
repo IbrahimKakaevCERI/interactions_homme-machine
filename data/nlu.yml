@@ -6,16 +6,12 @@ nlu:
     - salut
     - bonjour
     - coucou
-    - bonjour à toi
     - bonne matinée
     - bonsoir
     - hey
     - salut toi
-    - allons-y
     - salut mec
-    - bonne après-midi
-    - bonjour
-    - salut
+    - hello
 
 - intent: goodbye
   examples: |
@@ -24,11 +20,9 @@ nlu:
     - à plus tard
     - bonne nuit
     - à la prochaine
-    - au revoir
     - passe une bonne journée
     - on se revoit bientôt
     - bye bye
-    - à bientôt
 
 - intent: affirm
   examples: |
@@ -41,7 +35,6 @@ nlu:
     - oui, c'est exact
     - bien entendu
     - c'est ça
-    - absolument
 
 - intent: deny
   examples: |
@@ -51,10 +44,6 @@ nlu:
     - je ne pense pas
     - ça ne me plaît pas
     - pas question
-    - pas vraiment
-    - non
-    - pas vraiment
-    - je ne crois pas
 
 - intent: mood_great
   examples: |
@@ -62,37 +51,18 @@ nlu:
     - super
     - incroyable
     - je me sens comme un roi
-    - merveilleux
-    - je me sens très bien
-    - je vais super bien
     - je suis au top
-    - je suis prêt à conquérir le monde
-    - super motivé
-    - extrêmement bien
-    - absolument parfait
-    - vraiment bien
-    - je vais très bien
-    - je me sens super bien
-    - je suis heureux
+    - je vais super bien
     - c'est génial
 
 - intent: mood_unhappy
   examples: |
     - ma journée a été horrible
     - je suis triste
-    - je ne me sens pas très bien
+    - je ne me sens pas bien
     - je suis déçu
-    - super triste
-    - je suis très triste
-    - je suis triste
     - vraiment triste
-    - pas bien
-    - pas très bien
-    - extrêmement triste
-    - vraiment très triste
     - je me sens mal
-    - je suis déçu
-    - je ne vais pas bien
 
 - intent: bot_challenge
   examples: |
@@ -100,10 +70,7 @@ nlu:
     - es-tu un humain ?
     - est-ce que je parle à un bot ?
     - est-ce que je parle à un humain ?
-    - es-tu un robot ?
-    - parles-tu à un humain ?
-    - es-tu un humain ?
-    - suis-je en train de parler à un robot ?
+    - tu es une intelligence artificielle ?
 
 # Intentions spécifiques à l'environnement hospitalier
 
@@ -114,8 +81,6 @@ nlu:
     - Comment aller à la salle d'attente ?
     - Où est l'accueil principal ?
     - Peux-tu m'aider à trouver la pédiatrie ?
-    - Où est le laboratoire ?
-    - Comment trouver le service des urgences ?
 
 - intent: ask_appointment
   examples: |
@@ -123,30 +88,41 @@ nlu:
     - Quand est mon prochain rendez-vous ?
     - Peux-tu vérifier si j'ai un rendez-vous ?
     - Quel est le prochain rendez-vous ?
-    - Vérifie mes rendez-vous à l'hôpital
-    - Je voudrais connaître la date de mon rendez-vous
 
 - intent: ask_visiting_hours
   examples: |
     - Quels sont les horaires de visite ?
     - A quelle heure sont les visites ?
-    - Peux-tu me dire les heures de visite ?
     - Quand puis-je rendre visite à un patient ?
-    - Quelles sont les heures de visite aujourd'hui ?
-
-- intent: ask_visiting_hours
-  examples: |
-    - Quelles sont les règles d'hygiène ici ?
-    - Dois-je porter un masque ?
-    - Quelles sont les consignes sanitaires ?
-    - Quelles sont les règles COVID dans cet hôpital ?
-    - Faut-il se désinfecter les mains à l'entrée ?
 
 - intent: ask_joke
   examples: |
     - Dis-moi une blague
     - Peux-tu me raconter une blague ?
     - Fais-moi rire
-    - Dis quelque chose de drôle
-    - J'aimerais entendre une blague
-    - Raconte une blague pour me faire sourire
+
+- intent: ask_hygiene_rules
+  examples: |
+    - Quelles sont les règles d'hygiène ici ?
+    - Dois-je porter un masque ?
+    - Faut-il se désinfecter les mains à l'entrée ?
+
+- intent: user_employee
+  examples: |
+    - Je suis un membre du personnel
+    - Je travaille ici
+    - Je suis infirmier
+    - Je suis docteur
+
+- intent: user_patient
+  examples: |
+    - Je suis un patient
+    - J'ai un rendez-vous médical
+    - Je suis ici pour une consultation
+
+- intent: user_visitor
+  examples: |
+    - Je suis un visiteur
+    - Je viens voir un patient
+    - Je rends visite à un ami
+    
