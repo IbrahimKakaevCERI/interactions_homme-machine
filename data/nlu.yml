@@ -74,13 +74,12 @@ nlu:
 
 # Intentions spécifiques à l'environnement hospitalier
 
-- intent: ask_direction
+- intent: ask_directions
   examples: |
-    - Où se trouve le service de radiologie ?
-    - Où est l'ascenseur ?
-    - Comment aller à la salle d'attente ?
-    - Où est l'accueil principal ?
-    - Peux-tu m'aider à trouver la pédiatrie ?
+    - Où se trouve [la salle d'urgence](location) ?
+    - Pouvez-vous m'indiquer le service de [cardiologie](location) ?
+    - Où est le service de [radiologie](location) ?
+    - Comment trouver [les urgences](location) ?
 
 - intent: ask_appointment
   examples: |

@@ -11,19 +11,22 @@ class ActionGiveDirections(Action):
     def run(self, dispatcher, tracker, domain):
         location = tracker.get_slot('location')
 
-        # Exemple simplifié : ajout des directions pour les services
-        if location == "cardiologie":
-            response = "Le service de cardiologie se trouve au 2ème étage, à gauche de l'ascenseur."
-        elif location == "radiologie" or location == "radios":
-            response = "Le service de radiologie est au rez-de-chaussée, à côté de l'accueil principal."
-        elif location == "urgence":
-            response = "La salle d'urgence est au 1er étage, juste à côté de l'entrée principale."
+        if location:
+            # Ajout des directions selon l'emplacement
+            if location.lower() in ["cardiologie"]:
+                response = "Le service de cardiologie se trouve au 2ème étage, à gauche de l'ascenseur."
+            elif location.lower() in ["radiologie", "radios"]:
+                response = "Le service de radiologie est au rez-de-chaussée, à côté de l'accueil principal."
+            elif location.lower() in ["urgence", "salle d'urgence"]:
+                response = "La salle d'urgence est au 1er étage, juste à côté de l'entrée principale."
+            else:
+                response = f"Je ne connais pas l'emplacement du service {location}. Veuillez vous renseigner à l'accueil."
         else:
-            response = f"Je ne connais pas l'emplacement du service {location}. Veuillez vous renseigner à l'accueil."
-            
-        dispatcher.utter_message(text=response)
+            response = "Je n'ai pas compris l'emplacement que vous recherchez. Pouvez-vous reformuler ?"
 
+        dispatcher.utter_message(text=response)
         return []
+
 
 # Action pour rappeler un rendez-vous
 class ActionCheckAppointment(Action):
