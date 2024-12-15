@@ -43,7 +43,7 @@ stories:
 # Scénario pour donner des directions dans l'hôpital
 - story: give directions
   steps:
-  - intent: ask_direction
+  - intent: ask_directions
   - action: action_give_directions
 
 # Scénario pour rappeler un rendez-vous
