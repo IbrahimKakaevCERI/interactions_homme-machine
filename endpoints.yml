@@ -11,10 +11,10 @@ action_endpoint:
 
 # Event broker pour streamer les événements des conversations.
 # Permet de connecter un broker pour les événements (optionnel).
-event_broker:
-  type: "pika"
-  url: "localhost"
-  username: "guest"
-  password: "guest"
-  queue: "rasa_events"
+# event_broker:
+#   type: "pika"
+#   url: "localhost"
+#   username: "guest"
+#   password: "guest"
+#   queue: "rasa_events"
 
