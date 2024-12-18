@@ -80,6 +80,9 @@ nlu:
     - Pouvez-vous m'indiquer le service de [cardiologie](location) ?
     - Où est le service de [radiologie](location) ?
     - Comment trouver [les urgences](location) ?
+    - Où se trouve [radiologie](location) ?
+    - Où est [la pharmacie](location) ?
+
 
 - intent: ask_appointment
   examples: |
@@ -116,12 +119,25 @@ nlu:
 - intent: user_patient
   examples: |
     - Je suis un patient
-    - J'ai un rendez-vous médical
-    - Je suis ici pour une consultation
+
 
 - intent: user_visitor
   examples: |
     - Je suis un visiteur
     - Je viens voir un patient
     - Je rends visite à un ami
+    - Je suis ici pour voir quelqu'un
+    - Je suis là pour voir un patient
+    - Je suis là pour voir un membre du personnel
+    - Je suis là pour voir un docteur
+    - Je suis là pour voir un infirmier
+
+- intent: demander_rendezvous
+  examples: |
+    - J'ai un rendez-vous médical
+    - Je suis ici pour une consultation
+    - J'ai un rendez-vous
+    - J'ai rendez-vous
+    - Je viens pour un rendez-vous
+
     

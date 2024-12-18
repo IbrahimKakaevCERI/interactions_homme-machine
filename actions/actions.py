@@ -3,29 +3,43 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 import datetime
+import sqlite3
 
 class ActionGiveDirections(Action):
     def name(self) -> str:
         return "action_give_directions"
 
     def run(self, dispatcher, tracker, domain):
+        # Récupérer la valeur du slot location
         location = tracker.get_slot('location')
+        
+        # Vérification de la valeur du slot
+        print(f"Location slot value: {location}")  # Ajout du print pour vérifier la valeur du slot
 
         if location:
-            # Ajout des directions selon l'emplacement
-            if location.lower() in ["cardiologie"]:
+            location = location.lower()  # Convertir la valeur en minuscule pour la comparaison
+            
+            # Listes de mots-clés pour chaque emplacement
+            cardiologie_keywords = ["cardiologie", "cardio", "coeur", "cardiaque", "cardiologue", "cardiologiste"]
+            radiologie_keywords = ["radiologie", "radios", "radio", "radiologiste", "radiologue", "scanner", "irm"]
+            urgence_keywords = ["urgence", "salle d'urgence", "urgences", "accident", "accidenté", "accidentés"]
+
+            # Vérifier si un mot-clé est dans la phrase
+            if any(keyword in location for keyword in cardiologie_keywords):
                 response = "Le service de cardiologie se trouve au 2ème étage, à gauche de l'ascenseur."
-            elif location.lower() in ["radiologie", "radios"]:
+            elif any(keyword in location for keyword in radiologie_keywords):
                 response = "Le service de radiologie est au rez-de-chaussée, à côté de l'accueil principal."
-            elif location.lower() in ["urgence", "salle d'urgence"]:
+            elif any(keyword in location for keyword in urgence_keywords):
                 response = "La salle d'urgence est au 1er étage, juste à côté de l'entrée principale."
             else:
-                response = f"Je ne connais pas l'emplacement du service {location}. Veuillez vous renseigner à l'accueil."
+                response = "Je ne connais pas l'emplacement du service. Veuillez vous renseigner à l'accueil."
         else:
-            response = "Je n'ai pas compris l'emplacement que vous recherchez. Pouvez-vous reformuler ?"
+            response = "Je n'ai pas bien compris l'emplacement que vous recherchez. Pouvez-vous reformuler ?"
 
         dispatcher.utter_message(text=response)
         return []
+
+
 
 
 # Action pour rappeler un rendez-vous
@@ -43,7 +57,8 @@ class ActionCheckAppointment(Action):
         if appointment_date:
             response = f"Vous avez un rendez-vous prévu le {appointment_date}."
         else:
-            response = "Je ne trouve pas de rendez-vous à venir. Voulez-vous vérifier une autre date?"
+            # Demander de reformuler si aucune date n'est donnée
+            response = "Je n'ai pas bien compris la date de votre rendez-vous. Pouvez-vous la répéter, s'il vous plaît ?"
 
         dispatcher.utter_message(text=response)
 
@@ -116,10 +131,9 @@ class ActionCheckRendezvous(Action):
 
     def get_rendezvous(self, user_name):
         # Connexion à la base de données SQLite et récupération du rendez-vous
-        conn = sqlite3.connect('rasa.db')
+        conn = sqlite3.connect('bdd/database.db')
         c = conn.cursor()
         c.execute('''SELECT date, time FROM rendezvous WHERE user_name = ?''', (user_name,))
         result = c.fetchone()
         conn.close()
         return result
-
