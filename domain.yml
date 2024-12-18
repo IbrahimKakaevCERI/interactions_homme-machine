@@ -109,6 +109,9 @@ responses:
 
   utter_visitor_welcome:
     - text: "Bonjour, cher visiteur ! Comment puis-je vous aider aujourd'hui ?"
+    
+  utter_check_rendezvous:
+    - text: "Donner moi votre nom pour vérifier votre rendez-vous."
 
 session_config:
   session_expiration_time: 60  # Session expiration time in minutes

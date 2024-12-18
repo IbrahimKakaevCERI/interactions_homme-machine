@@ -22,3 +22,4 @@ tracker_store:
   type: SQL
   dialect: "sqlite"
   url: "sqlite:///bdd/database.db"  # Correct chemin relatif vers le fichier SQLite
+

@@ -119,3 +119,4 @@ add_horaire_visite('0748989898','Marie Durand', '2021-12-25', '14:00', '18:00')
 add_rendezvous('0748989898','Jean Jacques', '2021-12-25', '18:00', 'Pédiatrie', 'Dr. Jules')
 add_horaire_visite('0748989898','Jean Jacques', '2021-12-25', '09:00', '12:00')
 add_horaire_visite('0748989898','Jean Jacques', '2021-12-25', '14:00', '18:00')
+
