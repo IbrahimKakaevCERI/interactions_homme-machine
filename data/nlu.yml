@@ -72,8 +72,6 @@ nlu:
     - est-ce que je parle à un humain ?
     - tu es une intelligence artificielle ?
 
-# Intentions spécifiques à l'environnement hospitalier
-
 - intent: ask_directions
   examples: |
     - Où se trouve [la salle d'urgence](location) ?
@@ -82,20 +80,6 @@ nlu:
     - Comment trouver [les urgences](location) ?
     - Où se trouve [radiologie](location) ?
     - Où est [la pharmacie](location) ?
-
-
-- intent: ask_appointment
-  examples: |
-    - Ai-je un rendez-vous aujourd'hui ?
-    - Quand est mon prochain rendez-vous ?
-    - Peux-tu vérifier si j'ai un rendez-vous ?
-    - Quel est le prochain rendez-vous ?
-
-- intent: ask_visiting_hours
-  examples: |
-    - Quels sont les horaires de visite ?
-    - A quelle heure sont les visites ?
-    - Quand puis-je rendre visite à un patient ?
 
 - intent: ask_joke
   examples: |
@@ -119,7 +103,10 @@ nlu:
 - intent: user_patient
   examples: |
     - Je suis un patient
-
+    - Je suis ici pour un rendez-vous médical
+    - Je suis malade
+    - Je suis ici pour un traitement
+    - Je suis ici pour une consultation
 
 - intent: user_visitor
   examples: |
@@ -132,12 +119,51 @@ nlu:
     - Je suis là pour voir un docteur
     - Je suis là pour voir un infirmier
 
-- intent: demander_rendezvous
+- intent: ask_rendezvous
   examples: |
-    - J'ai un rendez-vous médical
-    - Je suis ici pour une consultation
-    - J'ai un rendez-vous
-    - J'ai rendez-vous
-    - Je viens pour un rendez-vous
+    - Puis-je prendre rendez-vous ?
+    - Comment prendre rendez-vous ?
+    - Comment fixer un rendez-vous ?
+    - Comment obtenir un rendez-vous ?
+    - Comment planifier un rendez-vous ?
+    - Comment organiser un rendez-vous ?
+    - Comment demander un rendez-vous ?
+    - Comment réserver un rendez-vous ?
+    - Comment programmer un rendez-vous ?
+    - Comment demander un rendez-vous médical ?
+    - Je voudrais prendre rendez-vous
+    - Je voudrais fixer un rendez-vous
+    - Je voudrais obtenir un rendez-vous
+    - Je voudrais planifier un rendez-vous
+    - Je voudrais organiser un rendez-vous
+    - Je voudrais demander un rendez-vous
+    - Je voudrais réserver un rendez-vous
+    - Je voudrais programmer un rendez-vous
+    - Je voudrais demander un rendez-vous médical
 
-    
+- intent: ask_horaire_visite
+  examples: |
+    - Quels sont les horaires de visite ?
+    - À quelle heure puis-je rendre visite à un patient ?
+    - Quand puis-je rendre visite à un patient ?
+    - Quand sont les visites ?
+    - Quand puis-je visiter un patient ?
+    - Quand puis-je visiter un membre du personnel ?
+    - Quand puis-je visiter un docteur ?
+    - Quand puis-je visiter un infirmier ?
+    - Quand puis-je visiter un ami ?
+    - Quand puis-je visiter un proche ?
+    - Quand puis-je visiter un parent ?
+
+- intent: inform_horaire_visite
+  examples: |
+    - Le nom du patient est John Doe
+    - Le patient s'appelle Jane Smith
+    - C'est pour Pierre Dupont
+    - C'est pour Marie Durand
+
+- intent: inform_rendezvous
+  examples: |
+    - Le nom du patient est John Law
+    - Le patient s'appelle Jane Doe
+    - C'est pour Pierre Eric

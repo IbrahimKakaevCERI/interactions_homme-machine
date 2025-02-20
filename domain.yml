@@ -1,67 +1,43 @@
+# Définition de la version du fichier de configuration
 version: "3.1"
 
+# Définition des intentions reconnues par le bot
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-  - ask_directions
-  - ask_joke
-  - ask_appointment
-  - ask_visiting_hours
-  - ask_hygiene_rules
-  - user_employee  # Intention pour un employé
-  - user_patient  # Intention pour un patient
-  - user_visitor  # Intention pour un visiteur
-  - demander_rendezvous
+  - greet  # Salutation
+  - goodbye  # Au revoir
+  - affirm  # Réponse positive (oui, d'accord...)
+  - deny  # Réponse négative (non, pas du tout...)
+  - mood_great  # L'utilisateur est de bonne humeur
+  - mood_unhappy  # L'utilisateur est de mauvaise humeur
+  - bot_challenge  # L'utilisateur demande si le bot est humain
+  - ask_directions  # Demande d'indications sur un lieu
+  - ask_joke  # L'utilisateur demande une blague
+  - ask_hygiene_rules  # Demande sur les règles d'hygiène
+  - user_employee  # L'utilisateur est un employé
+  - user_patient  # L'utilisateur est un patient
+  - user_visitor  # L'utilisateur est un visiteur
+  - ask_rendezvous  # Demande d'informations sur un rendez-vous
+  - ask_horaire_visite  # Demande d'informations sur les horaires de visite
+  - inform_horaire_visite  # Informations sur les horaires de visite
+  - inform_rendezvous  # Informations sur un rendez-vous
 
+# Définition des entités utilisées dans les dialogues
 entities:
-  - location
-  - appointment_date
-  - person_name
-  - user_type  # Entité pour capturer le type d'utilisateur
+  - location  # Lieu concerné par la demande
+  - appointment_date  # Date d'un rendez-vous
+  - person_name  # Nom de la personne concernée
+  - user_type  # Type d'utilisateur (patient, employé, visiteur)
+
 
 actions:
-  - action_hello_world
   - action_give_directions
   - action_check_appointment
   - action_provide_visiting_hours
   - action_provide_hygiene_rules
   - action_tell_joke
-  - action_check_rendezvous
+  - action_get_rendezvous
+  - action_get_horaire_visite
 
-slots:
-  location:
-    type: text
-    mappings:
-      - type: from_text
-  appointment_date:
-    type: text
-    mappings:
-      - type: from_text
-  person_name:
-    type: text
-    mappings:
-      - type: from_text
-  user_type:
-    type: categorical
-    values:
-      - employee
-      - patient
-      - visitor
-    mappings:
-      - type: from_intent  # Utilisez cette ligne pour mapper l'intention à ce slot
-        intent: user_employee
-        value: employee
-      - type: from_intent
-        intent: user_patient
-        value: patient
-      - type: from_intent
-        intent: user_visitor
-        value: visitor
 
 responses:
   utter_greet:
@@ -72,9 +48,6 @@ responses:
 
   utter_ask_location:
     - text: "Vers quel service ou salle souhaitez-vous aller?"
-
-  utter_ask_visiting_hours:
-    - text: "Les horaires de visite sont de 10h à 18h. Puis-je vous aider avec autre chose?"
 
   utter_ask_appointment:
     - text: "Je vois que vous avez un rendez-vous prévu le {appointment_date}. Souhaitez-vous plus d'informations?"
@@ -109,10 +82,23 @@ responses:
 
   utter_visitor_welcome:
     - text: "Bonjour, cher visiteur ! Comment puis-je vous aider aujourd'hui ?"
-    
-  utter_check_rendezvous:
-    - text: "Donner moi votre nom pour vérifier votre rendez-vous."
 
+  utter_ask_rendezvous:
+    - text: "Quel est votre nom pour que je puisse retrouver vos rendez-vous ?"
+
+  utter_ask_horaire_visite:
+    - text: "Quel est le nom du patient pour lequel vous souhaitez connaître les horaires de visite ?"
+
+# Configuration des sessions utilisateur
 session_config:
-  session_expiration_time: 60  # Session expiration time in minutes
-  carry_over_slots_to_new_session: true  # Carry over slots for session continuity
+  session_expiration_time: 60  # Durée d'expiration de la session en minutes
+  carry_over_slots_to_new_session: true  # Conserver les informations d'une session à l'autre
+
+
+slots:
+  patient_name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: person_name
+
