@@ -74,12 +74,13 @@ nlu:
 
 - intent: ask_directions
   examples: |
-    - Où se trouve [la salle d'urgence](location) ?
-    - Pouvez-vous m'indiquer le service de [cardiologie](location) ?
-    - Où est le service de [radiologie](location) ?
-    - Comment trouver [les urgences](location) ?
-    - Où se trouve [radiologie](location) ?
-    - Où est [la pharmacie](location) ?
+    - Où se trouve [la salle d'urgence](lieu) ?
+    - Comment aller à [la pharmacie](lieu) ?
+    - Peux-tu m'indiquer le chemin pour [la radiologie](lieu) ?
+    - Comment se rendre à [la maternité](lieu) ?
+    - Où se trouve [la pédiatrie](lieu) ?
+    - Où se trouve [la cardiologie](lieu) ?
+    - Où se trouve [la dermatologie](lieu) ?
 
 - intent: ask_joke
   examples: |
@@ -107,6 +108,21 @@ nlu:
     - Je suis malade
     - Je suis ici pour un traitement
     - Je suis ici pour une consultation
+
+
+- intent: out_of_scope
+  examples: |
+    - jdhfjshdfkjshd
+    - Quel est le sens de la vie ?
+    - Peux-tu commander une pizza ?
+    - blablabla
+    - J'ai un problème avec ma voiture
+    - Parle-moi des licornes
+    - Combien de planètes y a-t-il dans l’univers ?
+    - C'est quoi ton film préféré ?
+    - Répare mon téléphone
+    - skdjfhsdkjf
+
 
 - intent: user_visitor
   examples: |
@@ -154,16 +170,39 @@ nlu:
     - Quand puis-je visiter un ami ?
     - Quand puis-je visiter un proche ?
     - Quand puis-je visiter un parent ?
+    - Je viens voir mon frère 
+    - Je viens voir ma soeur
+    - Je viens voir mon père
+    - Je viens voir ma mère
+    - Je viens voir mon oncle
+    - Je viens voir ma tante
+    - Je viens voir mon cousin
+    - Je viens voir ma cousine
+    - Je viens voir mon grand-père
+    - Je viens voir ma grand-mère
+    - Je viens voir mon ami
+    - Je viens voir ma copine
+    - Je viens voir mon copain
+    - Je viens voir mon conjoint
+    - Je viens voir ma conjointe
+    - Je viens voir mon mari
+    - Je viens voir ma femme
+    - Je viens voir mon enfant
+    - Je viens voir mon fils
+    - Je viens voir ma fille
+    - Je viens voir mon bébé
+    - Je viens voir mon nouveau-né
+    - Je viens voir mon neveu
+    - Je viens voir ma nièce
+    - Je viens voir mon petit-fils
+    - Je viens voir ma petite-fille
 
-- intent: inform_horaire_visite
+- intent: inform
   examples: |
-    - Le nom du patient est John Doe
-    - Le patient s'appelle Jane Smith
-    - C'est pour Pierre Dupont
-    - C'est pour Marie Durand
-
-- intent: inform_rendezvous
-  examples: |
-    - Le nom du patient est John Law
-    - Le patient s'appelle Jane Doe
-    - C'est pour Pierre Eric
+    - Le nom du patient est [John Doe](person_name)
+    - Le patient s'appelle [Jane Smith](person_name)
+    - C'est pour [Pierre Dupont](person_name)
+    - Je veux connaître les horaires pour [Marie Durand](person_name)
+    - C'est pour un patient nommé [Paul Martin](person_name)
+    - [Jean Dupont](person_name)
+    - [Anne Sophie](person_name)

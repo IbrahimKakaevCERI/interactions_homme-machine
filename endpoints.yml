@@ -9,6 +9,8 @@
 action_endpoint:
   url: "http://localhost:5055/webhook"
 
+  
+
 # Event broker pour streamer les événements des conversations.
 # Permet de connecter un broker pour les événements (optionnel).
 # event_broker:

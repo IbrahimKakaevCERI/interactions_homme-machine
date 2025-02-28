@@ -14,3 +14,6 @@ venv/
 models/
 
 actions/__pycache__/
+Python-2.7.18/
+pynaoqi-python2.7-2.5.5.5-linux64/
+mon_env/

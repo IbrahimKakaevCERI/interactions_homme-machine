@@ -36,11 +36,6 @@ stories:
   - action: utter_smalltalk_social
   - action: utter_ask_appointment
 
-- story: give directions
-  steps:
-  - intent: ask_directions
-  - action: action_give_directions
-
 - story: hygiene rules
   steps:
   - intent: ask_hygiene_rules
@@ -70,7 +65,7 @@ stories:
   steps:
     - intent: ask_rendezvous
     - action: utter_ask_rendezvous
-    - intent: inform_rendezvous
+    - intent: inform
       entities:
         - patient_name: "John Doe"
     - action: action_get_rendezvous
@@ -79,9 +74,17 @@ stories:
   steps:
     - intent: ask_horaire_visite
     - action: utter_ask_horaire_visite
-    - intent: inform_horaire_visite
-      slot_was_set:
+    - intent: inform
+    - slot_was_set:
         - patient_name: "John Doe"
     - action: action_get_horaire_visite
     - action: utter_goodbye
+
+- story: give directions
+  steps:
+    - intent: ask_directions
+    - slot_was_set:
+      - location: "la radiologie"
+    - action: action_give_directions
+
 

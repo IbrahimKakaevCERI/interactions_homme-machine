@@ -18,12 +18,11 @@ intents:
   - user_visitor  # L'utilisateur est un visiteur
   - ask_rendezvous  # Demande d'informations sur un rendez-vous
   - ask_horaire_visite  # Demande d'informations sur les horaires de visite
-  - inform_horaire_visite  # Informations sur les horaires de visite
-  - inform_rendezvous  # Informations sur un rendez-vous
+  - inform
 
 # Définition des entités utilisées dans les dialogues
 entities:
-  - location  # Lieu concerné par la demande
+  - lieu # Lieu concerné par la demande
   - appointment_date  # Date d'un rendez-vous
   - person_name  # Nom de la personne concernée
   - user_type  # Type d'utilisateur (patient, employé, visiteur)
@@ -89,6 +88,7 @@ responses:
   utter_ask_horaire_visite:
     - text: "Quel est le nom du patient pour lequel vous souhaitez connaître les horaires de visite ?"
 
+
 # Configuration des sessions utilisateur
 session_config:
   session_expiration_time: 60  # Durée d'expiration de la session en minutes
@@ -101,4 +101,19 @@ slots:
     mappings:
       - type: from_entity
         entity: person_name
+  location:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: lieu
 
+
+entity_synonyms:
+  la radiologie: radiologie
+  le laboratoire: laboratoire
+  la maternité: maternité
+  la pédiatrie: pédiatrie
+  la cardiologie: cardiologie
+  la dermatologie: dermatologie
+  la pharmacie: pharmacie
