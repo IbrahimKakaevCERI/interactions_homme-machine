@@ -87,4 +87,7 @@ stories:
       - location: "la radiologie"
     - action: action_give_directions
 
-
+- story: error handling
+  steps:
+    - intent: error
+    - action: utter_error

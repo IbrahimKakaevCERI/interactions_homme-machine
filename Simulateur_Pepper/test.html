@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur Pepper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        #chat {
+            width: 60%;
+            margin: auto;
+            text-align: left;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: white;
+            height: 400px;
+            overflow-y: auto;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-message {
+            color: blue;
+            font-weight: bold;
+        }
+
+        .bot-message {
+            color: green;
+            font-weight: bold;
+        }
+
+        .message {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        #recording-indicator {
+            display: none;
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 15px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #record {
+            background-color: #28a745;
+            color: white;
+        }
+
+        #record:hover {
+            background-color: #218838;
+        }
+
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Simulateur Pepper</h1>
+    <div id="chat">
+        <p><strong>Bot :</strong> Bonjour ! Posez-moi une question.</p>
+    </div>
+    
+    <p id="recording-indicator">🔴 Enregistrement en cours...</p>
+    
+    <button id="record">🎤 Enregistrer</button>
+    <audio id="audio" controls></audio>
+
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+        let stream;
+        let recognition;
+        let transcribedText = "";
+
+        async function initMicrophone() {
+            try {
+                if (!stream) { // 🔹 Vérifie si le micro est déjà actif
+                    stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    console.log("✅ Micro activé en continu");
+                }
+            } catch (error) {
+                console.error("🚨 Erreur d'accès au micro :", error);
+                alert("Veuillez autoriser l'accès au microphone.");
+            }
+        }
+
+        document.getElementById('record').onclick = async () => {
+            await initMicrophone(); // 🔹 S'assure que le micro est bien activé
+            
+            document.getElementById('recording-indicator').style.display = "block"; // 🔴 Indicateur visible
+            document.getElementById('recording-indicator').textContent = "🔴 Enregistrement en cours..."; 
+            
+            startSpeechRecognition(); // 🗣️ Démarrer la reconnaissance vocale
+
+            mediaRecorder = new MediaRecorder(stream); // 🔹 Réutilise le même stream
+            mediaRecorder.ondataavailable = event => {
+                audioChunks.push(event.data);
+            };
+
+            mediaRecorder.onstop = async () => {
+                document.getElementById('recording-indicator').style.display = "none"; // 🔴 Cacher l'indicateur
+                stopSpeechRecognition(); // 🗣️ Arrêter la reconnaissance vocale
+
+                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                audioChunks = [];
+                document.getElementById('audio').src = URL.createObjectURL(audioBlob);
+
+                // Afficher le texte transcrit dans le chat avant l'envoi à Flask
+                addMessage("Vous : " + transcribedText, "user-message");
+
+                const formData = new FormData();
+                formData.append('audio', audioBlob, 'recording.wav');
+
+                try {
+                    console.log("📤 Envoi de l'audio au serveur Flask...");
+                    const response = await fetch('http://localhost:5000/upload', { 
+                        method: 'POST', 
+                        body: formData 
+                    });
+
+                    console.log("📥 Réponse reçue de Flask :", response);
+
+                    if (!response.ok) {
+                        throw new Error(`Erreur serveur : ${response.status} - ${response.statusText}`);
+                    }
+
+                    const result = await response.json();
+                    console.log("✅ Réponse JSON de Flask :", result);
+
+                    if (result.message) {
+                        addMessage("Bot : " + result.message, "bot-message");
+                        speak(result.message);
+                    } else {
+                        addMessage("Bot : (Pas de réponse reçue de Rasa)", "bot-message");
+                    }
+
+                } catch (error) {
+                    console.error("🚨 Erreur lors de la récupération de la réponse :", error);
+                    addMessage("Bot : Erreur de connexion au serveur.", "bot-message");
+                }
+            };
+
+            mediaRecorder.start();
+            setTimeout(() => mediaRecorder.stop(), 5000); // 🕒 L'enregistrement dure 5 secondes
+        };
+
+        function startSpeechRecognition() {
+            recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = "fr-FR";
+            recognition.continuous = true;
+            recognition.interimResults = true;
+
+            recognition.onresult = event => {
+                transcribedText = "";
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    transcribedText += event.results[i][0].transcript + " ";
+                }
+                document.getElementById("recording-indicator").textContent = "🔴 Enregistrement en cours... " + transcribedText;
+            };
+
+            recognition.start();
+        }
+
+        function stopSpeechRecognition() {
+            if (recognition) {
+                recognition.stop();
+            }
+        }
+
+        function addMessage(text, className) {
+            const chatDiv = document.getElementById("chat");
+            const message = document.createElement("p");
+            message.className = "message " + className;
+            message.textContent = text;
+            chatDiv.appendChild(message);
+            chatDiv.scrollTop = chatDiv.scrollHeight;
+        }
+
+        function speak(text) {
+            let synth = window.speechSynthesis;
+            let utter = new SpeechSynthesisUtterance(text);
+            synth.speak(utter);
+        }
+
+        // 🔹 Active le micro dès que la page charge
+        initMicrophone();
+    </script>
+
+</body>
+</html>

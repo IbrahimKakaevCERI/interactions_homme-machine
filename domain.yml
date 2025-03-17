@@ -19,6 +19,7 @@ intents:
   - ask_rendezvous  # Demande d'informations sur un rendez-vous
   - ask_horaire_visite  # Demande d'informations sur les horaires de visite
   - inform
+  - error
 
 # Définition des entités utilisées dans les dialogues
 entities:
@@ -87,6 +88,8 @@ responses:
 
   utter_ask_horaire_visite:
     - text: "Quel est le nom du patient pour lequel vous souhaitez connaître les horaires de visite ?"
+  utter_error:
+    - text: "Désolé, je n'ai pas compris votre demande. Pouvez-vous reformuler ?"
 
 
 # Configuration des sessions utilisateur

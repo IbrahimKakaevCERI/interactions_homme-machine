@@ -110,19 +110,6 @@ nlu:
     - Je suis ici pour une consultation
 
 
-- intent: out_of_scope
-  examples: |
-    - jdhfjshdfkjshd
-    - Quel est le sens de la vie ?
-    - Peux-tu commander une pizza ?
-    - blablabla
-    - J'ai un problème avec ma voiture
-    - Parle-moi des licornes
-    - Combien de planètes y a-t-il dans l’univers ?
-    - C'est quoi ton film préféré ?
-    - Répare mon téléphone
-    - skdjfhsdkjf
-
 
 - intent: user_visitor
   examples: |
@@ -206,3 +193,8 @@ nlu:
     - C'est pour un patient nommé [Paul Martin](person_name)
     - [Jean Dupont](person_name)
     - [Anne Sophie](person_name)
+
+- intent: error
+  examples: |
+    - erreur
+    - error

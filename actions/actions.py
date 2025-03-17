@@ -19,7 +19,7 @@ class ActionGetHoraireVisite(Action):
         if horaires:
             message = "Voici les horaires de visite pour le patient :\n"
             for horaire in horaires:
-                message += f"de {horaire[1]} à {horaire[2]}\n"
+                message += f"de {horaire[0]} à {horaire[1]}\n"
             dispatcher.utter_message(text=message)
         else:
             dispatcher.utter_message(text="Désolé, je n'ai trouvé aucun horaire de visite pour ce patient.")
@@ -32,7 +32,7 @@ class ActionGetHoraireVisite(Action):
             c = conn.cursor()
             print(patient_name)
             c.execute('''
-            SELECT date, start_time, end_time FROM horaires_visite WHERE user_name = ?
+            SELECT start_time, end_time FROM horaires_visite WHERE user_name = ?
             ''', (patient_name,))
             result = c.fetchall()
             conn.close()
@@ -96,7 +96,7 @@ class ActionGetLocation(Action):
 
     def get_location_from_db(self, location):
         global v
-        
+
         try:
             conn = sqlite3.connect('bdd/database.db')
             c = conn.cursor()
