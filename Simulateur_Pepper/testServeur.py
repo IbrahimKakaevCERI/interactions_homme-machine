@@ -5,6 +5,35 @@ import os
 import wave
 import speech_recognition as sr
 import subprocess
+from ultralytics import YOLO
+import cv2
+import matplotlib.pyplot as plt
+import base64
+import time
+
+model = YOLO("runs/detect/train11/weights/best.pt")
+
+def get_class(image_path):
+    results = model(image_path)
+
+    boxes = results[0].boxes
+    cls_max = -1
+    conf_max = -1
+    for box in boxes:
+        cls_id = int(box.cls[0])
+        conf = float(box.conf[0])
+
+        if conf > conf_max:
+            cls_max = cls_id
+            conf_max = conf
+
+    res = ""
+    if conf_max == -1:
+        res = "Échec de la reconnaissance"
+    else:
+        res = model.names[conf_max]
+
+    return res
 
 app = Flask(__name__)
 CORS(app)  # 🔹 Active CORS pour toutes les routes
@@ -71,7 +100,24 @@ def upload_audio():
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
+
+@app.route('/upload_img', methods=['POST'])
+def upload_image():
+    data = request.get_json()
+    image_data = data['image'].split(',')[1]
+    image_bytes = base64.b64decode(image_data)
+    
+    filename = f"received_images/img_{int(time.time() * 1000)}.jpg"
+    with open(filename, 'wb') as f:
+        f.write(image_bytes)
+
+    result = get_class(filename)
+    print(f"Résultat de la reconnaissance : {result}")
+    return result, 200
+
 if __name__ == '__main__':
     if not os.path.exists('recordings'):
         os.makedirs('recordings')
+    if not os.path.exists('received_images'):
+        os.makedirs('received_images')
     app.run(host='localhost', port=5000)

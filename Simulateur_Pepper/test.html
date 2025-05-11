@@ -84,6 +84,9 @@
     <button id="record">🎤 Enregistrer</button>
     <audio id="audio" controls></audio>
 
+    <video id="video" autoplay playsinline width="640" height="480"></video>
+    <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+
     <script>
         let mediaRecorder;
         let audioChunks = [];
@@ -203,6 +206,39 @@
 
         // 🔹 Active le micro dès que la page charge
         initMicrophone();
+
+        // Partie reconnaissance
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+            video.srcObject = stream;
+
+            setInterval(() => {
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageDataURL = canvas.toDataURL("image/jpeg");
+
+            console.log("Captured image at:", new Date().toLocaleTimeString());
+            const a = document.createElement('a');
+            fetch('http://localhost:5000/upload_img', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    image: imageDataURL
+                })
+                })
+                .then(res => res.text())
+                .then(msg => console.log("Server says:", msg))
+                .catch(err => console.error("Error:", err));
+            }, 5000);
+        })
+        .catch(error => {
+            console.error("Webcam access denied:", error);
+        });
     </script>
 
 </body>
